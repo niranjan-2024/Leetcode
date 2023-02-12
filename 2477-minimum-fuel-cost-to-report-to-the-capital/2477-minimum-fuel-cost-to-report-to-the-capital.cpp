@@ -1,16 +1,16 @@
 class Solution {
 public:
+    
     long long ans;
     
     long long dfs(vector<vector<int>> &adj,int node,vector<bool> &visited,int seats){
         visited[node] = true;
-        long long representatives = 1;
+        int representatives = 1;
         
         for(int i=0;i<adj[node].size();i++){
-            int next = adj[node][i];
-            
-            if(!visited[next]){
-                representatives += dfs(adj,next,visited,seats);
+            int neighbour = adj[node][i];
+            if(!visited[neighbour]){
+                representatives += dfs(adj,neighbour,visited,seats);
             }
         }
         
@@ -28,13 +28,13 @@ public:
     }
     
     long long minimumFuelCost(vector<vector<int>>& roads, int seats) {
-        if(roads.size() == 0){
+        int n = roads.size();
+        ans = 0;
+        
+        if(n == 0){
             return 0;
         }
         
-        ans = 0;
-        
-        int n = roads.size();
         vector<vector<int>> adj(n+1);
         
         for(int i=0;i<n;i++){
