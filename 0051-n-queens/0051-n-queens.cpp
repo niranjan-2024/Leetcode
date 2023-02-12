@@ -16,7 +16,7 @@ public:
             }
         }
         
-        for(int i=row,j=col ; i>=0 && j<board.size(); i--,j++){
+        for(int i=row,j=col ; i>=0 && j<board.size() ; i--,j++){
             if(board[i][j] == 'Q'){
                 return false;
             }
