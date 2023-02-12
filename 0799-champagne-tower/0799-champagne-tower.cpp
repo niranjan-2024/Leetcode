@@ -2,7 +2,6 @@ class Solution {
 public:
     double champagneTower(int poured, int query_row, int query_glass) {
         vector<vector<double>> glass(query_row+1,vector<double>(query_row+1,0));
-        
         glass[0][0] = poured;
         
         for(int i=0;i<query_row;i++){
@@ -10,8 +9,8 @@ public:
                 double amount = glass[i][j];
                 
                 if(amount>1){
+                    amount = amount-1;
                     glass[i][j] = 1;
-                    amount -= 1;
                     glass[i+1][j] += amount/2;
                     glass[i+1][j+1] += amount/2;
                 }
