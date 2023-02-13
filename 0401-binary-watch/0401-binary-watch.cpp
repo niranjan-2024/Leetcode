@@ -2,8 +2,8 @@ class Solution {
 public:
     
     void solve(vector<int> &options,vector<string> &ans,int num,int current,int index,int hour,int min){
-        if(hour > 11 || min > 59){
-            return; 
+        if(hour>11 || min>59){
+            return;
         }
         
         if(current == num){
