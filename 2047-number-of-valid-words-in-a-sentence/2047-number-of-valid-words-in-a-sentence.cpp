@@ -36,10 +36,6 @@ public:
             words.push_back(curr);
         }
         
-        for(auto s:words){
-            cout<<s<<endl;
-        }
-        
         int ans = 0;
         
         for(string s:words){
