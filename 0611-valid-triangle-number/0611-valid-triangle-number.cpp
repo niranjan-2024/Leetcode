@@ -13,10 +13,10 @@ public:
             while(i<j){
                 if(nums[i]+nums[j]>nums[k]){
                     ans += (j-i);
-                    j = j-1;
+                    j -= 1;
                 }
                 else{
-                    i = i+1;
+                    i += 1;
                 }
             }
         }
