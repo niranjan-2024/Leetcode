@@ -15,16 +15,13 @@ class Solution {
             return true;
         }
         
-        int prev,curr = 0;
-        prev = 1;
+        int prev = 1;
 
         for(int i=2;i<N;i++){
-            curr = i+prev;
-            if(curr == N){
+            prev += i;
+            if(prev == N){
                 return 1;
             }
-            prev = curr;
-            curr = 0;
         }
         
         return 0;
