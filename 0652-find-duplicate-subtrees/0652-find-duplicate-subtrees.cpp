@@ -15,6 +15,11 @@ public:
         unordered_map<string,int> m;
         vector<TreeNode*> ans;
         dfs(root,m,ans);
+        
+        for(auto it:m){
+            cout<<it.first<<" "<<it.second<<endl;
+        }
+        
         return ans;
     }
     
@@ -23,7 +28,7 @@ public:
             return "";
         }
         
-        string s = to_string(root->val) + "," + dfs(root->left,m,ans) + "," + dfs(root->right,m,ans);
+        string s = to_string(root->val) + " " + dfs(root->left,m,ans) + " " + dfs(root->right,m,ans);
         if(m[s]++ == 1){
             ans.push_back(root);
         }
