@@ -3,16 +3,16 @@
  * @return {number}
  */
 var numIdenticalPairs = function(nums) {
-    const map = {};
+    const mapq = {};
     let ans = 0;
     
     for(const num of nums){
-        if(map[num]){
-            ans += map[num];
-            map[num] += 1;
+        if(mapq[num]){
+            ans += mapq[num];
+            mapq[num] += 1;
         }
         else{
-            map[num] = 1;
+            mapq[num] = 1;
         }
     }
     
