@@ -3,18 +3,18 @@
  * @return {number[]}
  */
 var smallerNumbersThanCurrent = function(nums) {
-    let sorted = [...nums].sort((a,b)=>a-b);
-    let map = {};
-    let result = [];
+    let ordered = [...nums].sort((a,b)=>a-b);
+    let maping = {};
+    let ans = [];
     
-    for(let i=0;i<sorted.length;i++){
-        if(sorted[i] == sorted[i-1]) continue;
-        map[sorted[i]] = i;
+    for(let i=0;i<ordered.length;i++){
+        if(ordered[i] == ordered[i-1]) continue;
+        maping[ordered[i]] = i;
     }
     
-    for(let i=0;i<sorted.length;i++){
-        result[i] = map[nums[i]];
+    for(let i=0;i<nums.length;i++){
+        ans[i] = maping[nums[i]];
     }
     
-    return result;
+    return ans;
 };
