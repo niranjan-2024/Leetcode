@@ -6,7 +6,7 @@ var numIdenticalPairs = function(nums) {
     const map = {};
     let ans = 0;
     
-    for(let num of nums){
+    for(const num of nums){
         if(map[num]){
             ans += map[num];
             map[num] += 1;
