@@ -3,16 +3,13 @@
  * @return {number}
  */
 var numIdenticalPairs = function(nums) {
-    const object = {};
     let ans = 0;
     
-    for(const num of nums){
-        if(object[num]){
-            ans += object[num];
-            object[num] += 1
-        }
-        else{
-            object[num] = 1;
+    for(let i=0;i<nums.length;i++){
+        for(let j=i+1;j<nums.length;j++){
+            if(nums[i] === nums[j]){
+                ans++;
+            }
         }
     }
     
