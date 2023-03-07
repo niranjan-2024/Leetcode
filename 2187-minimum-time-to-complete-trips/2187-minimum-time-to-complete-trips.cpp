@@ -1,11 +1,11 @@
 class Solution {
 public:
     
-    long long int tripsTillNow(vector<int> &time,long long int mid){
+    long long int tripsTillNow(vector<int> &time,long long int totalTime){
         long long int trips = 0;
         for(auto n:time){
             long long int timePerTrip = n;
-            trips += (mid/timePerTrip);
+            trips += (totalTime/timePerTrip);
         }
         return trips;
     }
