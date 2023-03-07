@@ -25,13 +25,9 @@ public:
             end+=ele;
         }
         
-        long long avg;
-        long long ans = 0;
-        
         while(start<=end){
-            avg = start + (end-start)/2;
+            long long avg = start + (end-start)/2;
             if(isPossible(n,batteries,avg)){
-                ans = avg;
                 start = avg+1;
             }
             else{
