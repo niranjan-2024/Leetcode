@@ -39,6 +39,6 @@ public:
             }
         }
         
-        return ans;
+        return start-1;
     }
 };
