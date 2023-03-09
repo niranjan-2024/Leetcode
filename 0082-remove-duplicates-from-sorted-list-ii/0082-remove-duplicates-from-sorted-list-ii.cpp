@@ -29,6 +29,7 @@ public:
             fast = fast->next;
         }
         
-        return dummy->next;
+        head = dummy->next;
+        return head;
     }
 };
