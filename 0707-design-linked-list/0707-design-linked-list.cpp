@@ -47,7 +47,7 @@ public:
         Node* newNode = new Node(val);
         
         if(index == 0){
-            newNode->next = curr;
+            newNode->next = head;
             head = newNode;
         }
         else{
