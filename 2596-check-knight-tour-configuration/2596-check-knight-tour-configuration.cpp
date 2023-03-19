@@ -12,7 +12,6 @@ public:
         
         while(!q.empty())
         {
-            int check = 0;
             int x = q.front().first;
             int y = q.front().second;
             q.pop();
@@ -21,18 +20,14 @@ public:
             {
                 int nx = x+dr[i], ny = y+dc[i];
                 if(nx>=0 && nx<n && ny>=0 && ny<n && grid[nx][ny]==k+1)
-                {   x = nx,y = ny;
-                    check = 1;
+                {   
+                    q.push({nx,ny});
                     break;
                 }
             }
             
-            if(check) {
-                q.push({x,y});
-            }
-            
-            k++;
+            k++;
         }
-        return k==(n*n) ? 1 : 0;
+        return k == (n*n) ? 1 : 0;
     }
 };
