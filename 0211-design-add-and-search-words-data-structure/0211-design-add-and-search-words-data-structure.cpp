@@ -4,12 +4,12 @@ public:
     vector<WordDictionary*> children;
     bool isWord;
     
-    WordDictionary():isWord(false){
+    WordDictionary():isWord(false) {
         children = vector<WordDictionary*>(26,NULL);
     }
     
     void addWord(string word) {
-        WordDictionary *curr = this;
+        WordDictionary* curr = this;
         
         for(char c:word){
             if(curr->children[c-'a'] == NULL){
@@ -22,13 +22,13 @@ public:
     }
     
     bool search(string word) {
-        WordDictionary *curr = this;
+        WordDictionary* curr = this;
         
         for(int i=0;i<word.length();i++){
             char c = word[i];
             
             if(c == '.'){
-                for(auto ch : curr->children){
+                for(auto ch:curr->children){
                     if(ch && ch->search(word.substr(i+1))){
                         return true;
                     }
