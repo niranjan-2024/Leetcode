@@ -21,7 +21,7 @@ public:
                 len = len-3;
                 ans += "-";
             }
-            else if(len == 4 || len == 2){
+            else{
                 ans += temp.substr(0,2);
                 temp.erase(0,2);
                 ans += "-";
