@@ -11,9 +11,8 @@ public:
         vector<long long> ans;
         
         for(int i=0;i<queries.size();i++){
-            int q = queries[i];
-            int upperIndex = upper_bound(nums.begin(),nums.end(),q) - nums.begin();
-            ans.push_back(((long long)q*upperIndex-prefix[upperIndex]) + ((prefix.back()-prefix[upperIndex])-(long long)q*(nums.size()-upperIndex)));
+            int uInd = upper_bound(nums.begin(),nums.end(),queries[i]) - nums.begin();
+            ans.push_back(((long long)queries[i]*uInd-prefix[uInd]) + ((prefix.back()-prefix[uInd])-(long long)queries[i]*(nums.size()-uInd)));
         }
         
         return ans;
