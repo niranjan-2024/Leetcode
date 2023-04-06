@@ -1,63 +1,40 @@
 class Solution {
 public:
     
-    bool bfs(vector<vector<int>> &visited,int i,int j,vector<vector<int>> &grid){
-        int n = grid.size();
-        int m = grid[0].size();
-        
-        visited[i][j] = 1;
-        
-        queue<pair<int,int>> q;
-        q.push({i,j});
-        
-        bool res = true;
-        
-        vector<int> drow = {-1,0,1,0};
-        vector<int> dcol = {0,-1,0,1};
-        
-        while(!q.empty()){
-            int row = q.front().first;
-            int col = q.front().second;
-            q.pop();
-            
-            for(int i=0;i<4;i++){
-                int newR = row + drow[i];
-                int newC = col + dcol[i];
-                
-                if(!(newR >= 0 && newR < n && newC >= 0 && newC < m)) {
-				    res = false;
-			    }
-                
-                if(newR>=0 && newR<n && newC>=0 && newC<m && grid[newR][newC]==0 && !visited[newR][newC]){
-                    visited[newR][newC] = 1;
-                    q.push({newR,newC});
-                }
-            }
+    vector<int> directions = {0,1,0,-1,0};
+    
+    void fill(vector<vector<int>> &grid,int r,int c){
+        if(r<0 || r>=grid.size() || c<0 || c>=grid[0].size() || grid[r][c]){
+            return;
         }
         
-        return res;
+        grid[r][c] = 1;
+        
+        for(int i=0;i<4;i++){
+            fill(grid,r+directions[i],c+directions[i+1]);
+        }
     }
     
     int closedIsland(vector<vector<int>>& grid) {
-        int n = grid.size();
-        int m = grid[0].size();
-        
-        if(m<=2 || n<=2){
-            return 0;
-        }
-        
-        vector<vector<int>> visited(n,vector<int>(m,0));
-        
-        int count = 0;
-        
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                if(visited[i][j] == 0 && grid[i][j] == 0 && bfs(visited,i,j,grid)){
-                     count++;
+        for(int i=0;i<grid.size();i++){
+            for(int j=0;j<grid[0].size();j++){
+                if(i==0 || j==0 || i==grid.size()-1 || j==grid[0].size()-1){
+                    fill(grid,i,j);
                 }
             }
         }
         
-        return count;
+        int ans = 0;
+        
+        for(int i=0;i<grid.size();i++){
+            for(int j=0;j<grid[0].size();j++){
+                if(grid[i][j]==0){
+                    ans++;
+                    fill(grid,i,j);
+                }
+            }
+        }
+        
+        return ans;
     }
 };
