@@ -1,29 +1,25 @@
-#define ll long long
-#define M 1000000007
 class Solution {
 public:
-    vector<vector<vector<ll>>> f;
-    vector<int> group;
-    vector<int> profit;
-    
-    ll dp(ll k, ll p, ll g) {
-        if (!k) return p <= 0;
-        if (p < 0) p = 0;
-        if (f[k][p][g] != INT_MIN) return f[k][p][g];
-        ll result = dp(k - 1, p, g);
-        if (g >= group[k - 1]) {
-            result += dp(k - 1, p - profit[k - 1], g - group[k - 1]);
+   int dp[102][102][102];
+    int mod=1e9+7;
+    int solve(int k,int i, int j,int n, int minProfit, vector<int>& group, vector<int>& profit)
+    {
+        if(k==profit.size())
+        {
+            if(j>=minProfit and n>=i) return 1;
+            return 0;
         }
-        result %= M;
-        f[k][p][g] = result;
-        return result;
+        else if(n<i) return 0;
+     
+        if(dp[k][i][j]!=-1) return  dp[k][i][j];
+        int include=0,notInclude=0;
+        notInclude= solve(k+1,i,j,n,minProfit,group,profit);
+        include=solve(k+1,i+group[k],min(j+profit[k],minProfit),n,minProfit,group,profit);
+        return  dp[k][i][j] = (include  % mod + notInclude  % mod )%mod;
     }
-    
-    int profitableSchemes(int G, int P, vector<int>& group_, vector<int>& profit_) {
-        group = group_;
-        profit = profit_;
-        int len = group.size();
-        f = vector<vector<vector<ll>>>(len + 1, vector<vector<ll>>(P + 1, vector<ll>(G + 1, INT_MIN)));
-        return dp(len, P, G) % M;
+    int profitableSchemes(int n, int minProfit, vector<int>& group, vector<int>& profit) {
+        memset(dp,-1,sizeof(dp));
+        return solve(0,0,0,n,minProfit,group,profit);
+        
     }
 };
