@@ -17,7 +17,7 @@ public:
             return 0;
         }
         
-        return ((sum == root->val) + rootSum(root->left,sum - root->val) + rootSum(root->right,sum - root->val));
+        return (sum == root->val) + rootSum(root->left,sum - root->val) + rootSum(root->right,sum - root->val);
     }
 
     int pathSum(TreeNode* root, int targetSum) {
