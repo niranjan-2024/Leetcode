@@ -5,10 +5,9 @@ public:
         int ans = 0;
         
         while(num){
-            int digit = num%10;
-            num /= 10;
             ans *= 10;
-            ans += digit;
+            ans += num%10;
+            num /= 10;
         }
         
         return ans;
