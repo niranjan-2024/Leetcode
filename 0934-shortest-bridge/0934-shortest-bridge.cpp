@@ -9,13 +9,10 @@ public:
         coordinates.insert({i,j});
         grid[i][j] = 2;
         
-        for(int r=-1;r<=1;r++){
-            for(int c=-1;c<=1;c++){
-                if(abs(r-c) == 1){
-                    dfs(grid,coordinates,i+r,j+c);
-                }
-            }
-        }
+        dfs(grid,coordinates,i-1,j);
+        dfs(grid,coordinates,i,j-1);
+        dfs(grid,coordinates,i+1,j);
+        dfs(grid,coordinates,i,j+1);
     }
     
     int shortestBridge(vector<vector<int>>& grid) {
