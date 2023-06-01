@@ -18,8 +18,8 @@ public:
         queue<pair<int,pair<int,int>>> q;
         vector<vector<int>> distance(n,vector<int>(m,1e9));
         
-        distance[source.first][destination.first] = 0;
-        q.push({0,{source.first,source.second}});
+        distance[source.first][destination.first] = 1;
+        q.push({distance[source.first][destination.first],{source.first,source.second}});
         
         int drow[] = {-1,-1,-1,0,0,1,1,1};
         int dcol[] = {-1,1,0,1,-1,-1,1,0};
@@ -35,14 +35,14 @@ public:
                 int newRow = row + drow[i];
                 int newCol = col + dcol[i];
                 
-                if(newRow>=0 && newRow<n && newCol>=0 && newCol<m && grid[newRow][newCol]==0 && currDistance+1 < distance[newRow][newCol]){
+                if(newRow>=0 && newRow<n && newCol>=0 && newCol<m && grid[newRow][newCol]==0 && currDistance +1< distance[newRow][newCol]){
                     distance[newRow][newCol] = 1+currDistance;
                     
                     if(newRow == destination.first && newCol == destination.second){
-                        return currDistance+1+1;
+                        return distance[newRow][newCol];
                     }
                     
-                    q.push({1+currDistance,{newRow,newCol}});
+                    q.push({distance[newRow][newCol],{newRow,newCol}});
                 }
             }
         }
