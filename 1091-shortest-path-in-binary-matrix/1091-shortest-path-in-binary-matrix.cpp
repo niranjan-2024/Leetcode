@@ -19,7 +19,7 @@ public:
         vector<vector<int>> distance(n,vector<int>(m,1e9));
         
         distance[source.first][destination.first] = 1;
-        q.push({distance[source.first][destination.first],{source.first,source.second}});
+        q.push({distance[source.first][destination.first],source});
         
         int drow[] = {-1,-1,-1,0,0,1,1,1};
         int dcol[] = {-1,1,0,1,-1,-1,1,0};
