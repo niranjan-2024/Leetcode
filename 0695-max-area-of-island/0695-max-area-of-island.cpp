@@ -1,74 +1,45 @@
-class DisjointSet {
-public:
-    vector<int> parent, size;
-
-    DisjointSet(int n) {
-        parent.resize(n + 1);
-        size.resize(n + 1);
-        for (int i = 0; i <= n; i++) {
-            parent[i] = i;
-            size[i] = 1;
-        }
-    }
-    int findUPar(int node) {
-        if (node == parent[node])
-            return node;
-        return parent[node] = findUPar(parent[node]);
-    }
-   
-    void unionBySize(int u, int v) {
-        int ulp_u = findUPar(u);
-        int ulp_v = findUPar(v);
-        if (ulp_u == ulp_v) return;
-        if (size[ulp_u] < size[ulp_v]) {
-            parent[ulp_u] = ulp_v;
-            size[ulp_v] += size[ulp_u];
-        }
-        else {
-            parent[ulp_v] = ulp_u;
-            size[ulp_u] += size[ulp_v];
-        }
-    }
-};
-
 class Solution {
 public:
-    int maxAreaOfIsland(vector<vector<int>>& grid) {
-        int n = grid.size();
-        int m = grid[0].size();
+    
+    int bfs(vector<vector<int>> &grid,int row,int col){
+        int area = 1;
         
-        int dr[] = {1,0,-1,0};
-        int dc[] = {0,-1,0,1};
+        queue<pair<int,int>> q;
+        q.push({row,col});
+        grid[row][col] = 0;
         
-        DisjointSet ds(n*m);
-        int max_area = 0;
+        int dx[] = {1,0,-1,0};
+        int dy[] = {0,-1,0,1};
         
-        for(int row=0;row<n;row++){
-            for(int col=0;col<m;col++){
-                int Node = row*m+col;
+        while(!q.empty()){
+            int row = q.front().first;
+            int col = q.front().second;
+            q.pop();
+            
+            for(int i=0;i<4;i++){
+                int newRow = row + dx[i];
+                int newCol = col + dy[i];
                 
-                if(grid[row][col] == 1){
-                    for(int i=0;i<4;i++){
-                        int newRow = row+dr[i];
-                        int newCol = col+dc[i];
-                        
-                        if(newRow>=0 && newRow<n && newCol>=0 && newCol<m && grid[newRow][newCol]==1){
-                            int adjacentNode = newRow*m+newCol;
-                            
-                            if(ds.findUPar(adjacentNode) != ds.findUPar(Node)){
-                                ds.unionBySize(Node,adjacentNode);
-                            }
-                        }
-                    }
-                }
-                else{
-                    ds.size[Node] = 0;
+                if(newRow>=0 && newRow<grid.size() && newCol>=0 && newCol<grid[0].size() && grid[newRow][newCol] == 1){
+                    grid[newRow][newCol] = 0;
+                    area++;
+                    q.push({newRow,newCol});
                 }
             }
         }
         
-        for(int i=0;i<n*m;i++){
-            max_area = max(max_area,ds.size[ds.findUPar(i)]);
+        return area;
+    }
+    
+    int maxAreaOfIsland(vector<vector<int>>& grid) {
+        int max_area = 0;
+        
+        for(int i=0;i<grid.size();i++){
+            for(int j=0;j<grid[0].size();j++){
+                if(grid[i][j] == 1){
+                    max_area = max(max_area,bfs(grid,i,j));
+                }
+            }
         }
         
         return max_area;
