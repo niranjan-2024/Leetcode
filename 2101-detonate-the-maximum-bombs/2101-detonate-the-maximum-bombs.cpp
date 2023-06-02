@@ -17,15 +17,15 @@ public:
         vector<vector<int>> graph(n);
         
         for(int i=0;i<n;i++){
-            long long x1 = bombs[i][0];
-            long long y1 = bombs[i][1];
-            long long rad = bombs[i][2];
+            long long int x1 = bombs[i][0];
+            long long int y1 = bombs[i][1];
+            long long int rad = bombs[i][2];
             
             for(int j=0;j<n;j++){
+                long long int x2 = bombs[j][0];
+                long long int y2 = bombs[j][1];
+                
                 if(i != j){
-                    long long x2 = bombs[j][0];
-                    long long y2 = bombs[j][1];
-                    
                     if((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1) <= rad*rad){
                         graph[i].push_back(j);
                     }
