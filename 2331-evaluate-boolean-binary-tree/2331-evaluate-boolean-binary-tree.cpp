@@ -12,14 +12,6 @@
 class Solution {
 public:
     bool evaluateTree(TreeNode* root) {
-        if(root->val < 2){
-            return root->val;
-        }
-        else if(root->val == 2){
-            return evaluateTree(root->left) || evaluateTree(root->right);
-        }
-        else{
-            return evaluateTree(root->left) && evaluateTree(root->right);
-        }
+        return root->val<2 ? root->val : (root->val==2 ? (evaluateTree(root->left)||evaluateTree(root->right)) : (evaluateTree(root->left)&&evaluateTree(root->right)));
     }
 };
