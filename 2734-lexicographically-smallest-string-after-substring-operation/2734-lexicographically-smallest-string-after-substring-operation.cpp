@@ -1,18 +1,19 @@
 class Solution {
 public:
     string smallestString(string s) {
+        int n= s.size();
         int i=0;
         
-        while(i<s.size() && s[i] == 'a'){
+        while(i<n && s[i] == 'a'){
             i++;
         }
         
-        if(i >= s.size()){
-            s[s.size()-1] = 'z';
+        if(i >= n){
+            s[n-1] = 'z';
             return s;
         }
         
-        while(i<s.size() && s[i] != 'a'){
+        while(i<n && s[i] != 'a'){
             s[i]--;
             i++;
         }
