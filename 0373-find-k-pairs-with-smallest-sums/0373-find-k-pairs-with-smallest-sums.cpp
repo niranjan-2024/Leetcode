@@ -4,12 +4,11 @@ public:
         int n = nums1.size();
         int m = nums2.size();
         
-        priority_queue<pair<int,pair<int,int>>, vector<pair<int,pair<int,int>>> , greater<pair<int,pair<int,int>>>> pq;
+        priority_queue< pair<int,pair<int,int>>,vector<pair<int,pair<int,int>>>,greater<pair<int,pair<int,int>>>> pq;
+        vector<vector<int>> ans;
         
-        vector<vector<int>> res;
-        
-        if(m == 0 || n == 0){
-            return res;
+        if(n == 0 || m == 0){
+            return ans;
         }
         
         for(int i=0;i<n;i++){
@@ -18,20 +17,19 @@ public:
         
         while(!pq.empty() && k>0){
             k--;
-            int sum = pq.top().first;
             int i = pq.top().second.first;
             int j = pq.top().second.second;
             pq.pop();
             
-            res.push_back({nums1[i],nums2[j]});
+            ans.push_back({nums1[i],nums2[j]});
             
             if(j+1 == m){
                 continue;
             }
             
-            pq.push({nums1[i]+nums2[j+1] , {i,j+1}});
+            pq.push({nums1[i]+nums2[j+1],{i,j+1}});
         }
         
-        return res;
+        return ans;
     }
 };
