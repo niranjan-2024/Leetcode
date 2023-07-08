@@ -3,24 +3,21 @@ public:
     long long putMarbles(vector<int>& weights, int k) {
         int n = weights.size();
         
-        if(k == 1 || n == k){
-            return 0;
-        }
+        if(k == 1 || n == k) return 0;
         
-        vector<int> barsSum;
+        vector<int> barSum;
         for(int i=0;i<n-1;i++){
-            barsSum.push_back(weights[i]+weights[i+1]);
+            barSum.push_back(weights[i]+weights[i+1]);
         }
+        sort(barSum.begin(),barSum.end());
         
-        sort(barsSum.begin(),barsSum.end());
-        
-        long long minSum = 0, maxSum = 0;
+        long long maxi=0,mini=0;
         
         for(int i=0;i<k-1;i++){
-            minSum += barsSum[i];
-            maxSum += barsSum[n-2-i];
+            mini += barSum[i];
+            maxi += barSum[n-2-i];
         }
         
-        return maxSum-minSum;
+        return maxi-mini;
     }
 };
