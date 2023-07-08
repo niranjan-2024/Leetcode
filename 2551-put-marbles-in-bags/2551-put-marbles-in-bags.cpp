@@ -3,6 +3,10 @@ public:
     long long putMarbles(vector<int>& weights, int k) {
         int n = weights.size();
         
+        if(k == 1 || n == k){
+            return 0;
+        }
+        
         vector<int> barsSum;
         for(int i=0;i<n-1;i++){
             barsSum.push_back(weights[i]+weights[i+1]);
