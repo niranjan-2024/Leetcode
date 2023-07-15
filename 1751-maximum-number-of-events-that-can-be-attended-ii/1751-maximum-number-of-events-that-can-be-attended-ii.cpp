@@ -11,11 +11,9 @@ public:
         }
         
         int i;
-        for(i=pos+1;i<n;i++){
-            if(events[i][0] > events[pos][1]){
-                break;
-            }
-        }
+        
+        vector<int> temp = {events[pos][1],INT_MAX,INT_MAX};
+        i = upper_bound(events.begin()+pos+1,events.end(),temp)-events.begin();
         
         return dp[pos][k] = max(solve(events,n,pos+1,k,dp),events[pos][2]+solve(events,n,i,k-1,dp));
     }
