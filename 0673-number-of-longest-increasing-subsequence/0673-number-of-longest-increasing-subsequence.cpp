@@ -3,7 +3,7 @@ public:
     int findNumberOfLIS(vector<int>& nums) {
         int n = nums.size();
         int ans = 0;
-        int max_len = 0 ;
+        int max_len = 0;
         
         vector<pair<int,int>> dp(n+1,{1,1});
         
@@ -18,8 +18,7 @@ public:
                     }
                 }
             }
-            
-            if(max_len == dp[i].first){
+            if(dp[i].first == max_len){
                 ans += dp[i].second;
             }
             if(dp[i].first > max_len){
