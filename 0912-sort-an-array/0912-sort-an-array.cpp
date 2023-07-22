@@ -2,34 +2,25 @@ class Solution {
 public:
     
     void merge(vector<int> &nums,int low,int mid,int high){
-        vector<int> temp;
+        int len = high-low+1;
+        int gap = (len/2)+(len%2);
         
-        int left = low;
-        int right = mid+1;
-        
-        while(left <= mid && right <= high){
-            if(nums[left] <= nums[right]){
-                temp.push_back(nums[left]);
-                left++;
+        while(gap>=1){
+            int left = low;
+            int right = left + gap;
+            
+            while(right <= high){
+                if(nums[left]>=nums[right]){
+                    swap(nums[left],nums[right]);
+                }
+                left++,right++;
             }
-            else{
-                temp.push_back(nums[right]);
-                right++;
+            
+            if(gap == 1){
+                break;
             }
-        }
-        
-        while(left <= mid){
-            temp.push_back(nums[left]);
-            left++;
-        }
-        
-        while(right <= high){
-            temp.push_back(nums[right]);
-            right++;
-        }
-        
-        for(int i=low;i<=high;i++){
-            nums[i] = temp[i-low];
+            
+            gap = (gap/2) + (gap%2);
         }
     }
     
