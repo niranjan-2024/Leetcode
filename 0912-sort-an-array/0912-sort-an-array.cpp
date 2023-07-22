@@ -5,9 +5,9 @@ public:
         int len = high-low+1;
         int gap = (len/2)+(len%2);
         
-        while(gap>=1){
+        while(gap>0){
             int left = low;
-            int right = left + gap;
+            int right = low + gap;
             
             while(right <= high){
                 if(nums[left]>=nums[right]){
