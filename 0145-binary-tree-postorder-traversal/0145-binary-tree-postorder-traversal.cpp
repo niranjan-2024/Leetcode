@@ -17,28 +17,32 @@ public:
             return ans;
         }
         
-        stack<TreeNode*> st1,st2;
+        stack<TreeNode*> st;
+        TreeNode* node = root;
         
-        st1.push(root);
-        
-        while(!st1.empty()){
-            TreeNode* node = st1.top();
-            st1.pop();
-            
-            st2.push(node);
-            
-            if(node->left){
-                st1.push(node->left);
+        while(node!=NULL || !st.empty()){
+            if(node != NULL){
+                st.push(node);
+                node = node->left;
             }
-            
-            if(node->right){
-                st1.push(node->right);
+            else{
+                TreeNode* temp = st.top()->right;
+                
+                if(temp != NULL){
+                    node = temp;
+                }
+                else{
+                    temp = st.top();
+                    st.pop();
+                    ans.push_back(temp->val);
+                    
+                    while(!st.empty() && temp == st.top()->right){
+                        temp = st.top();
+                        st.pop();
+                        ans.push_back(temp->val);
+                    }
+                }
             }
-        }
-        
-        while(!st2.empty()){
-            ans.push_back(st2.top()->val);
-            st2.pop();
         }
         
         return ans;
