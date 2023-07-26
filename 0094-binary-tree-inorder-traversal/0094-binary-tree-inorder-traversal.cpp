@@ -14,11 +14,11 @@ public:
     vector<int> inorderTraversal(TreeNode* root) {
         vector<int> ans;
         if(root == NULL){
-            return ans;
+            ans;
         }
         
-        stack<TreeNode*> st;
         TreeNode* node = root;
+        stack<TreeNode*> st;
         
         while(true){
             if(node != NULL){
