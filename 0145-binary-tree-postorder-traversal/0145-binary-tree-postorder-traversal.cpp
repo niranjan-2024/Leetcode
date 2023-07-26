@@ -20,15 +20,15 @@ public:
         stack<TreeNode*> st;
         TreeNode* node = root;
         
-        while(node!=NULL || !st.empty()){
-            if(node != NULL){
+        while(!st.empty() || node!=NULL){
+            if(node){
                 st.push(node);
                 node = node->left;
             }
             else{
                 TreeNode* temp = st.top()->right;
                 
-                if(temp != NULL){
+                if(temp){
                     node = temp;
                 }
                 else{
