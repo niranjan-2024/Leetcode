@@ -17,18 +17,18 @@ public:
             return 0;
         }
         
-        int lh = check(root->left);
-        int rh = check(root->right);
+        int l = check(root->left);
+        int r = check(root->right);
         
-        if(lh == -1 || rh == -1){
+        if(l==-1 || r==-1){
             return -1;
         }
         
-        if(abs(lh-rh)>1){
+        if(abs(l-r)>1){
             return -1;
         }
         
-        return 1 + max(lh,rh);
+        return 1+max(l,r);
     }
     
     bool isBalanced(TreeNode* root) {
