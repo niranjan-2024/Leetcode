@@ -27,10 +27,19 @@ public:
         
         int depth = 0;
         
-        for(auto child:root->children){
+        for(auto child : root->children){
             depth = max(depth,maxDepth(child));
         }
         
         return depth+1;
     }
 };
+
+
+
+
+
+
+
+
+
