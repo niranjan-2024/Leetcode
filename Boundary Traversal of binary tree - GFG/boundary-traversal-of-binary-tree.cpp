@@ -133,7 +133,7 @@ public:
     void addLeaves(Node *root,vector<int> &ans){
         if(isLeaf(root)){
             ans.push_back(root->data);
-            return;
+            // return;
         }
         
         if(root->left){
