@@ -107,10 +107,7 @@ class Solution {
             q.pop();
             Node* node = it.first;
             int line = it.second;
-            
-            //if(mp.find(line) == mp.end()){
             mp[line] = node->data;
-            //}
             
             if(node->left){
                 q.push({node->left,line-1});
