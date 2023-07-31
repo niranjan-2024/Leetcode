@@ -17,8 +17,8 @@ public:
         }
         
         int ans = 0;
-        queue<pair<TreeNode*,int>> q;
         
+        queue<pair<TreeNode*,int>> q;
         q.push({root,0});
         
         while(!q.empty()){
@@ -27,7 +27,7 @@ public:
             int firstIndex,lastIndex;
             
             for(int i=0;i<size;i++){
-                long long int currIndex = q.front().second;
+                long long int currIndex = q.front().second-minIndex;
                 TreeNode* node = q.front().first;
                 q.pop();
                 
@@ -39,10 +39,10 @@ public:
                 }
                 
                 if(node->left){
-                    q.push({node->left,currIndex*2+1});
+                    q.push({node->left,2*currIndex+1});
                 }
                 if(node->right){
-                    q.push({node->right,currIndex*2+2});
+                    q.push({node->right,2*currIndex+2});
                 }
             }
             
