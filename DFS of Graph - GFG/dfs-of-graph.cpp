@@ -10,7 +10,7 @@ class Solution {
     void dfs(int node,vector<int> adj[],vector<int> &ans,vector<int> &visited){
         visited[node] = 1;
         ans.push_back(node);
-
+        
         for(int adjacentNode : adj[node]){
             if(!visited[adjacentNode]){
                 dfs(adjacentNode,adj,ans,visited);
@@ -21,7 +21,9 @@ class Solution {
     vector<int> dfsOfGraph(int V, vector<int> adj[]) {
         vector<int> ans;
         vector<int> visited(V,0);
+        
         dfs(0,adj,ans,visited);
+        
         return ans;
     }
 };
