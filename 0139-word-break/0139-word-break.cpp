@@ -18,7 +18,7 @@ public:
                     if(dict.find(word)!= dict.end())
                     {
                         dp[i]=true;
-                        break;
+                        //break;
                     }
                 }
             }
