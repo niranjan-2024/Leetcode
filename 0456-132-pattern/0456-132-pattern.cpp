@@ -13,12 +13,12 @@ public:
                 return true;
             }
             
-            while(!st.empty() && s1>st.top()){
+            while(!st.empty() && nums[i]>st.top()){
                 s3 = st.top();
                 st.pop();
             }
             
-            st.push(s1);
+            st.push(nums[i]);
         }
         
         return false;
