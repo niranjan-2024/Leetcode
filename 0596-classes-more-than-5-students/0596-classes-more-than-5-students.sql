@@ -1,4 +1,1 @@
-SELECT class
-FROM Courses
-GROUP BY class
-HAVING COUNT(student) >= 5
+SELECT class FROM courses GROUP BY class HAVING COUNT(student) >= 5
