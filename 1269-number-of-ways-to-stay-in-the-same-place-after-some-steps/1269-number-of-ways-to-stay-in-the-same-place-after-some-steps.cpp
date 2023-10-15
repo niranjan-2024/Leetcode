@@ -1,8 +1,9 @@
 class Solution {
 public:
     int mod = (1000000007);
+    int arrLen;
     
-    int solve(int index,int steps,int arrLen,vector<vector<int>> &dp){
+    int solve(int index,int steps,vector<vector<int>> &dp){
         if(index == 0 && steps == 0){
             return 1;
         }
@@ -14,11 +15,12 @@ public:
             return dp[index][steps];
         }
         
-        return dp[index][steps] = ((long long)solve(index+1,steps-1,arrLen,dp)%mod + (long long)solve(index,steps-1,arrLen,dp)%mod + (long long)solve(index-1,steps-1,arrLen,dp)%mod)%mod;
+        return dp[index][steps] = ((long long)solve(index+1,steps-1,dp)%mod + (long long)solve(index,steps-1,dp)%mod + (long long)solve(index-1,steps-1,dp)%mod)%mod;
     }
     
     int numWays(int steps, int arrLen) {
         vector<vector<int>> dp(steps/2 + 1, vector<int>(steps+1,-1));
-        return solve(0,steps,arrLen,dp);
+        this->arrLen = arrLen;
+        return solve(0,steps,dp);
     }
 };
