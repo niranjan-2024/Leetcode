@@ -17,7 +17,7 @@ public:
             return dp[index][steps];
         }
         
-        return dp[index][steps] = ((L)solve(index+1,steps-1)%mod + (L)solve(index,steps-1)%mod + (L)solve(index-1,steps-1)%mod)%mod;
+        return dp[index][steps] = ((L)solve(index+1,steps-1) + (L)solve(index,steps-1) + (L)solve(index-1,steps-1))%mod;
     }
     
     int numWays(int steps, int arrLen) {
