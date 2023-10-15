@@ -1,3 +1,4 @@
+#define L long long
 class Solution {
 public:
     int mod = (1000000007);
@@ -16,7 +17,7 @@ public:
             return dp[index][steps];
         }
         
-        return dp[index][steps] = ((long long)solve(index+1,steps-1)%mod + (long long)solve(index,steps-1)%mod + (long long)solve(index-1,steps-1)%mod)%mod;
+        return dp[index][steps] = ((L)solve(index+1,steps-1)%mod + (L)solve(index,steps-1)%mod + (L)solve(index-1,steps-1)%mod)%mod;
     }
     
     int numWays(int steps, int arrLen) {
