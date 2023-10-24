@@ -20,10 +20,10 @@ public:
         q.push(root);
         
         vector<int> ans;
+        int sz,maxi=INT_MIN;
         
         while(!q.empty()){
-            int sz = q.size();
-            int maxi = INT_MIN;
+            sz = q.size();
             
             for(int i=0;i<sz;i++){
                 TreeNode* node = q.front();
@@ -40,6 +40,7 @@ public:
             }
             
             ans.push_back(maxi);
+            maxi = INT_MIN;
         }
         
         return ans;
