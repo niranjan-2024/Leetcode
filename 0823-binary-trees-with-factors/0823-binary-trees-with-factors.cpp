@@ -29,7 +29,7 @@ public:
     }
     
     int numFactoredBinaryTrees(vector<int>& arr) {
-        // sort(arr.begin(),arr.end());
+        sort(arr.begin(),arr.end());
 
         st.insert(arr.begin(),arr.end());
         
