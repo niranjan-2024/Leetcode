@@ -1,34 +1,22 @@
 class Solution {
 public:
     
-    const static int a = 0,e = 1,i = 2,o = 3,u = 4;
-    const static int any = 5;
-    int mod = 1e9+7;
+    int a=0 , e=1 , i=2, o=3, u=4;
+    int MOD = 1e9+7;
     
-    vector<vector<int>> followedBy = {{e},
-                                      {a,i},  
-                                      {a,e,o,u},
-                                      {i,u},
-                                      {a},
-                                      {a,e,i,o,u}
-                                     };
-    
-    int dp[200001][6];
-    
-    int countVowelPermutation(int n,int last = any) {
-        if(n == 0){
-            return 1;
-        }
-        if(dp[n][last]){
-            return dp[n][last];
+    int countVowelPermutation(int n) {
+        vector<long long> dp(5,1LL), prev(5,1LL);
+        
+        while(n-- > 1){
+            dp[a] = (prev[e] + prev[i] + prev[u])%MOD;
+            dp[e] = (prev[a] + prev[i])%MOD;
+            dp[i] = (prev[e] + prev[o])%MOD;
+            dp[o] = (prev[i])%MOD;
+            dp[u] = (prev[i] + prev[o])%MOD;
+            
+            swap(dp,prev);
         }
         
-        int ans = 0;
-        
-        for(int next:followedBy[last]){
-            ans = (ans+countVowelPermutation(n-1,next))%mod;
-        }
-        
-        return dp[n][last] = ans;
+        return accumulate(prev.begin(),prev.end(),0LL)%MOD;
     }
 };
