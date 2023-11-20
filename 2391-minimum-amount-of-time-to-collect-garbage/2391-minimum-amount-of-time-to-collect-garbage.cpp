@@ -1,22 +1,20 @@
 class Solution {
 public:
-    vector<string> garbageG;
-    vector<int> travelG;
     
-    int collectGarbage(char type){
+    int collectGarbage(vector<string>& garbage, vector<int>& travel, char type){
         int tempPrev = 0;
         int cost = 0;
         
-        for(int i=0;i<garbageG.size();i++){
+        for(int i=0;i<garbage.size();i++){
             int temp = 0;
             bool tempAdd = false;
             
             if(i>0){
-                temp = travelG[i-1];
+                temp = travel[i-1];
             }
             
-            for(int j=0;j<garbageG[i].length();j++){
-                if(garbageG[i][j] == type){
+            for(int j=0;j<garbage[i].length();j++){
+                if(garbage[i][j] == type){
                     cost += 1;
                     tempAdd = true;
                 }
@@ -37,9 +35,6 @@ public:
             travel[i] += travel[i-1];
         }
         
-        garbageG = garbage;
-        travelG = travel;
-        
-        return collectGarbage('M') + collectGarbage('P') + collectGarbage('G');
+        return collectGarbage(garbage,travel,'M') + collectGarbage(garbage,travel,'P') + collectGarbage(garbage,travel,'G');
     }
 };
