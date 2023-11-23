@@ -21,9 +21,11 @@ public:
                 sort(it.begin(),it.end());
                 int diff = it[1]-it[0];
                 bool check = true;
+                
                 for(int i=1;i<it.size();i++){
                     if(it[i]-it[i-1] != diff){
                         check = false;
+                        break;
                     }
                 }
                 
