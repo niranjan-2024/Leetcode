@@ -7,15 +7,15 @@ public:
         }
         
         int left = 0;
-        int right = sum;
+        int righ = sum;
 
         vector<int> result(nums.size(), 0);
 
         for (int i = 0; i < nums.size(); i++) {
             int n = nums[i];
-            right -= n;
+            righ -= n;
 
-            result[i] = n * i - left + right - n * (nums.size() - i - 1);
+            result[i] = n * i - left + righ - n * (nums.size() - i - 1);
 
             left += n;
         }
