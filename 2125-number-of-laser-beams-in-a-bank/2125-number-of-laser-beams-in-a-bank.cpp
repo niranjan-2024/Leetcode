@@ -1,7 +1,8 @@
 class Solution {
 public:
     int numberOfBeams(vector<string>& bank) {
-        vector<int> lasers;
+        int prev = 0;
+        int ans = 0;
         
         for(int i=0;i<bank.size();i++){
             string temp = bank[i];
@@ -14,14 +15,9 @@ public:
             }
             
             if(laser != 0){
-                lasers.push_back(laser);   
+                ans += prev*laser;
+                prev = laser;
             }
-        }
-        
-        int ans = 0;
-        
-        for(int i=1;i<lasers.size();i++){
-            ans += lasers[i]*lasers[i-1];
         }
         
         return ans;
