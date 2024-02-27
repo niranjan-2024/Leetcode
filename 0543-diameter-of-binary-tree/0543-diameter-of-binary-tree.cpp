@@ -28,7 +28,8 @@ public:
     }
     
     int diameterOfBinaryTree(TreeNode* root) {
-        findDiameter(root);
+        int h = findDiameter(root);
+        cout<<h;
         return diameter;
     }
 };
